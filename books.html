@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+
+</head>
+<body>
+    <h1>Add new books</h1>
+    <input type="text" id="title" placeholder="Book tilte"><br>
+    <input type="text" id="Author" placeholder="Author"><br>
+    <button onclick="sayAddBook(event)">Add BOOK</button>
+    <script >
+       async function add_Book(event){
+          event.preventDefault()
+
+           const apiURL = 'http://localhost:3000/books';
+           const title = document.getElementById('title').value;
+           const author = document.getElementById('Author').value;
+           const postData = {title, author}
+           console.log(postData);
+           
+           await fetch(apiURL,{
+            method : 'POST',
+            body : JSON.stringify(postData)
+
+           })
+            alert('Book is added');
+        }
+
+        async function sayAddBook(event){
+          await add_Book(event)
+        }
+    </script>
+</body>
+</html>
